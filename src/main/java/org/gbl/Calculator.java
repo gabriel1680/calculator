@@ -12,12 +12,12 @@ public class Calculator {
         calculator = new SimpleCalculator();
     }
 
-    public double calculate(String expression) {
+    public double calculate(final String expression) {
         return evaluate(toPostfixNotation(expression));
     }
 
-    private double evaluate(StringBuilder postfix) {
-        final String[] tokens = postfix.toString().split("\\s+");
+    private double evaluate(final String postfix) {
+        final String[] tokens = postfix.split("\\s+");
         final var stack = new Stack<Double>();
         for (String token : tokens) {
             if (token.isEmpty()) {
@@ -45,7 +45,7 @@ public class Calculator {
         };
     }
 
-    private static StringBuilder toPostfixNotation(final String expression) {
+    private static String toPostfixNotation(final String expression) {
         final var postfix = new StringBuilder();
         final var operators = new Stack<Character>();
         for (int i = 0; i < expression.length(); i++) {
@@ -76,14 +76,14 @@ public class Calculator {
         while (!operators.isEmpty()) {
             postfix.append(operators.pop()).append(SEPARATOR);
         }
-        return postfix;
+        return postfix.toString();
     }
 
     private static boolean havePrecedenceOver(char operation1, char operation2) {
         return precedenceFor(operation1) >= precedenceFor(operation2);
     }
 
-    private static int precedenceFor(Character operation) {
+    private static int precedenceFor(char operation) {
         return switch (operation) {
             case '*', '/' -> 2;
             case '+', '-' -> 1;
