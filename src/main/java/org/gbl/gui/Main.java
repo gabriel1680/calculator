@@ -6,6 +6,9 @@ import org.gbl.gui.components.CalculatorViewImpl;
 public class Main {
     public static void main(String[] args) {
         final var calculator = new Calculator();
-        new CalculatorViewImpl(calculator);
+        final var view = new CalculatorViewImpl();
+        final var controller = new ViewController(calculator, view);
+        view.onInput(controller::handle);
+        controller.show();
     }
 }

@@ -1,27 +1,30 @@
 package org.gbl.gui.components;
 
-import org.gbl.calculator.Calculator;
+import org.gbl.gui.CalculatorInput;
 import org.gbl.gui.CalculatorView;
-import org.gbl.gui.ViewController;
 
 import java.awt.*;
+import java.util.function.Consumer;
 
 public class CalculatorViewImpl implements CalculatorView {
 
-    private final ViewController controller;
+    private final ContainerFrame frame;
+    private Consumer<CalculatorInput> inputListener;
     private final Display display;
 
-    public CalculatorViewImpl(Calculator calculator) {
-        this.controller = new ViewController(calculator, this);
-
-        final var frame = new ContainerFrame();
+    public CalculatorViewImpl() {
+        frame = new ContainerFrame();
         display = new Display();
         frame.add(display, BorderLayout.NORTH);
 
-        final var buttonsPanel = new ButtonsPanel(this.controller::handle);
+        final var buttonsPanel = new ButtonsPanel(this::handleInput);
         frame.add(buttonsPanel, BorderLayout.CENTER);
+    }
 
-        frame.show();
+    private void handleInput(CalculatorInput input) {
+        if (inputListener != null) {
+            inputListener.accept(input);
+        }
     }
 
     @Override
@@ -32,5 +35,16 @@ public class CalculatorViewImpl implements CalculatorView {
     @Override
     public void clearText() {
         display.setText("");
+    }
+
+
+    @Override
+    public void onInput(Consumer<CalculatorInput> listener) {
+        this.inputListener = listener;
+    }
+
+    @Override
+    public void show() {
+        frame.show();
     }
 }

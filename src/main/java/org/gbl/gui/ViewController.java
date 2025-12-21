@@ -15,6 +15,10 @@ public class ViewController {
         this.input = new StringBuilder();
     }
 
+    public void show() {
+        view.show();
+    }
+
     public void handle(CalculatorInput input) {
         switch (input) {
             case CalculatorInput.Clear c -> clear();
