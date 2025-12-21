@@ -4,11 +4,15 @@ import java.util.function.Consumer;
 
 public interface CalculatorView {
 
-    void showText(String text);
-
     void clearText();
 
     void onInput(Consumer<CalculatorInput> listener);
 
     void show();
+
+    void showResult(double result);
+
+    void showInput(String input);
+
+    void showError(Exception exception);
 }

@@ -28,11 +28,6 @@ public class CalculatorViewImpl implements CalculatorView {
     }
 
     @Override
-    public void showText(String text) {
-        display.setText(text);
-    }
-
-    @Override
     public void clearText() {
         display.setText("");
     }
@@ -46,5 +41,20 @@ public class CalculatorViewImpl implements CalculatorView {
     @Override
     public void show() {
         frame.show();
+    }
+
+    @Override
+    public void showResult(double result) {
+        display.setText(String.valueOf(result));
+    }
+
+    @Override
+    public void showInput(String input) {
+        display.setText(input);
+    }
+
+    @Override
+    public void showError(Exception exception) {
+        display.setText("Error: %s".formatted(exception.getMessage()));
     }
 }

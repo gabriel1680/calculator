@@ -31,13 +31,13 @@ public class ViewController {
 
     private void appendLabel(String label) {
         input.append(label);
-        view.showText(input.toString());
+        view.showInput(input.toString());
     }
 
     private void backspace() {
         if (!input.isEmpty()) {
             input.deleteCharAt(input.length() - 1);
-            view.showText(input.toString());
+            view.showInput(input.toString());
         }
     }
 
@@ -49,10 +49,10 @@ public class ViewController {
     private void evaluate() {
         try {
             double result = calculator.calculate(input.toString());
-            view.showText(String.valueOf(result));
+            view.showResult(result);
             clearInputBuffer();
         } catch (Exception e) {
-            view.showText("Error: " + e.getMessage());
+            view.showError(e);
             clearInputBuffer();
         }
     }
