@@ -1,18 +1,19 @@
 package org.gbl.gui;
 
 import org.gbl.calculator.Calculator;
-import org.gbl.gui.components.CalculatorViewImpl;
 
 public class ViewController {
 
     private final Calculator calculator;
-    private final CalculatorViewImpl view;
+    private final CalculatorView view;
     private final StringBuilder input;
+    private boolean showingResult;
 
-    public ViewController(Calculator calculator, CalculatorViewImpl view) {
+    public ViewController(Calculator calculator, CalculatorView view) {
         this.calculator = calculator;
         this.view = view;
         this.input = new StringBuilder();
+        this.showingResult = false;
     }
 
     public void show() {
@@ -30,8 +31,18 @@ public class ViewController {
     }
 
     private void appendLabel(String label) {
+        if (showingResult) {
+            if (isDigit(label)) {
+                input.setLength(0); // start new expression
+            }
+            showingResult = false;
+        }
         input.append(label);
         view.showInput(input.toString());
+    }
+
+    private boolean isDigit(String value) {
+        return value.length() == 1 && Character.isDigit(value.charAt(0));
     }
 
     private void backspace() {
@@ -39,10 +50,12 @@ public class ViewController {
             input.deleteCharAt(input.length() - 1);
             view.showInput(input.toString());
         }
+        showingResult = false;
     }
 
     private void clear() {
         clearInputBuffer();
+        showingResult = false;
         view.clearText();
     }
 
@@ -51,9 +64,12 @@ public class ViewController {
             double result = calculator.calculate(input.toString());
             view.showResult(result);
             clearInputBuffer();
+            input.append(result);   // ⭐ carry result forward
+            showingResult = true;
         } catch (Exception e) {
             view.showError(e);
             clearInputBuffer();
+            showingResult = false;
         }
     }
 
