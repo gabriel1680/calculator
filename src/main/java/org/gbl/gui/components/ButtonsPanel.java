@@ -1,5 +1,7 @@
 package org.gbl.gui.components;
 
+import org.gbl.gui.CalculatorInput;
+
 import java.awt.*;
 import java.util.function.Consumer;
 

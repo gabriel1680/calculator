@@ -1,6 +1,8 @@
 package org.gbl.gui.components;
 
 import org.gbl.calculator.Calculator;
+import org.gbl.gui.CalculatorView;
+import org.gbl.gui.ViewController;
 
 import java.awt.*;
 

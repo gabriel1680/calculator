@@ -1,10 +1,10 @@
-package org.gbl.gui.components;
+package org.gbl.gui;
 
-import org.gbl.gui.components.CalculatorInput.Backspace;
-import org.gbl.gui.components.CalculatorInput.Clear;
-import org.gbl.gui.components.CalculatorInput.Digit;
-import org.gbl.gui.components.CalculatorInput.Evaluate;
-import org.gbl.gui.components.CalculatorInput.Operator;
+import org.gbl.gui.CalculatorInput.Backspace;
+import org.gbl.gui.CalculatorInput.Clear;
+import org.gbl.gui.CalculatorInput.Digit;
+import org.gbl.gui.CalculatorInput.Evaluate;
+import org.gbl.gui.CalculatorInput.Operator;
 
 public sealed interface CalculatorInput
         permits Digit, Operator, Evaluate, Clear, Backspace {
