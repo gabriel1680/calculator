@@ -23,6 +23,10 @@ class SimpleCalculator {
         return toBigDecimal(a).subtract(toBigDecimal(b), PRECISION).doubleValue();
     }
 
+    double module(double a, double b) {
+        return toBigDecimal(a).remainder(toBigDecimal(b), PRECISION).doubleValue();
+    }
+
     private static BigDecimal toBigDecimal(double a) {
         return BigDecimal.valueOf(a);
     }

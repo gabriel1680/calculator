@@ -18,6 +18,7 @@ class CalculatorTest {
         assertThat(calculator.calculate("2-4")).isEqualTo(-2);
         assertThat(calculator.calculate("2*4")).isEqualTo(8);
         assertThat(calculator.calculate("2/4")).isEqualTo(0.5);
+        assertThat(calculator.calculate("5%2")).isEqualTo(1);
     }
 
     @Test

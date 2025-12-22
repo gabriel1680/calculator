@@ -38,6 +38,7 @@ class ExpressionEvaluator {
             case '-' -> calculator.subtract(a, b);
             case '*' -> calculator.multiply(a, b);
             case '/' -> calculator.divide(a, b);
+            case '%' -> calculator.module(a, b);
             default ->
                     throw new IllegalArgumentException("Unknown operator: '%s'".formatted(operator));
         };
