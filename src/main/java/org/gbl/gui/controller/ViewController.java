@@ -23,9 +23,15 @@ public class ViewController {
             case CalculatorInput.Clear c -> clear();
             case CalculatorInput.Backspace b -> backspace();
             case CalculatorInput.Evaluate e -> evaluate();
+            case CalculatorInput.InvertSignal i -> invertSignal();
             case CalculatorInput.Digit digit -> append(digit.value());
             case CalculatorInput.Operator operator -> append(operator.value());
         }
+    }
+
+    private void invertSignal() {
+        state.invertSignal();
+        view.showInput(state.getInput());
     }
 
     private void append(String value) {

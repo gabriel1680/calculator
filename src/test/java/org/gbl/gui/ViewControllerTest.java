@@ -79,7 +79,7 @@ class ViewControllerTest {
         controller.handle(new CalculatorInput.Operator("1"));
         controller.handle(new CalculatorInput.Operator("2"));
         controller.handle(new CalculatorInput.Backspace());
-        assertThat(view.lastText()).isEqualTo("12");
+        assertThat(view.lastText()).isEqualTo("1");
     }
 
     @Test

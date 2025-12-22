@@ -4,10 +4,11 @@ import org.gbl.gui.controller.CalculatorInput.Backspace;
 import org.gbl.gui.controller.CalculatorInput.Clear;
 import org.gbl.gui.controller.CalculatorInput.Digit;
 import org.gbl.gui.controller.CalculatorInput.Evaluate;
+import org.gbl.gui.controller.CalculatorInput.InvertSignal;
 import org.gbl.gui.controller.CalculatorInput.Operator;
 
 public sealed interface CalculatorInput
-        permits Digit, Operator, Evaluate, Clear, Backspace {
+        permits Backspace, Clear, Digit, Evaluate, InvertSignal, Operator {
 
     record Digit(String value) implements CalculatorInput {}
 
@@ -16,6 +17,8 @@ public sealed interface CalculatorInput
     record Evaluate() implements CalculatorInput {}
 
     record Clear() implements CalculatorInput {}
+
+    record InvertSignal() implements CalculatorInput {}
 
     record Backspace() implements CalculatorInput {}
 }

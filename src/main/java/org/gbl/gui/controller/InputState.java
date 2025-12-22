@@ -35,6 +35,29 @@ class InputState {
         return input.toString();
     }
 
+    public void invertSignal() {
+        if (hasNegation()) {
+            removeNegation();
+        } else if (!input.isEmpty()) {
+            addNegation();
+        }
+    }
+
+    private boolean hasNegation() {
+        return input.length() >= 3
+                && input.indexOf("(-") == 0
+                && input.charAt(input.length() - 1) == ')';
+    }
+
+    private void removeNegation() {
+        input.delete(0, 2);
+        input.deleteCharAt(input.length() - 1);
+    }
+
+    private void addNegation() {
+        input.insert(0, "(-").append(")");
+    }
+
     private boolean isDigit(String value) {
         return value.length() == 1 && Character.isDigit(value.charAt(0));
     }
