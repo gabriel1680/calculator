@@ -6,7 +6,7 @@ import java.util.List;
 
 class ExpressionEvaluator {
 
-    private static final List<String> UNARY_OPERATORS = List.of("√");
+    private static final List<Operator> UNARY_OPERATORS = List.of(Operator.SQUARE_ROOT);
 
     private final char separator;
     private final SimpleCalculator calculator;
@@ -30,26 +30,25 @@ class ExpressionEvaluator {
             stack.push(Double.parseDouble(token));
             return;
         }
-        if (UNARY_OPERATORS.contains(token)) {
+        final var operator = Operator.fromChar(firstCharacter);
+        if (UNARY_OPERATORS.contains(operator)) {
             final double operand = stack.pop();
-            stack.push(compute(firstCharacter, operand, 0));
+            stack.push(compute(operator, operand, 0));
         } else { // binary operators
             final double b = stack.pop();
             final double a = stack.pop();
-            stack.push(compute(firstCharacter, a, b));
+            stack.push(compute(operator, a, b));
         }
     }
 
-    private double compute(char operator, double a, double b) {
+    private double compute(Operator operator, double a, double b) {
         return switch (operator) {
-            case '+' -> calculator.sum(a, b);
-            case '-' -> calculator.subtract(a, b);
-            case '*' -> calculator.multiply(a, b);
-            case '/' -> calculator.divide(a, b);
-            case '%' -> calculator.module(a, b);
-            case '√' -> calculator.squareRoot(a);
-            default ->
-                    throw new IllegalArgumentException("Unknown operator: '%s'".formatted(operator));
+            case SUM -> calculator.sum(a, b);
+            case SUBTRACTION -> calculator.subtract(a, b);
+            case MULTIPLICATION -> calculator.multiply(a, b);
+            case DIVISION -> calculator.divide(a, b);
+            case MOD -> calculator.module(a, b);
+            case SQUARE_ROOT -> calculator.squareRoot(a);
         };
     }
 }

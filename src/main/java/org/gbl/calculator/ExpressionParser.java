@@ -31,7 +31,9 @@ class ExpressionParser {
                     postfix.append(operators.pop()).append(separator);
                 operators.pop(); // discard the '(' operator and never adds the ')'
             } else {
-                while (!operators.isEmpty() && havePrecedenceOver(operators.peek(), character))
+                while (!operators.isEmpty() &&
+                        Operator.isOperator(operators.peek()) &&
+                        havePrecedenceOver(operators.peek(), character))
                     postfix.append(operators.pop()).append(separator);
                 operators.push(character);
             }
