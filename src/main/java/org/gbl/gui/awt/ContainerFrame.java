@@ -30,6 +30,10 @@ class ContainerFrame {
         frame.setVisible(true);
     }
 
+    Component[] getComponents() {
+        return frame.getComponents();
+    }
+
     private static class CleanupWindowAdapter extends WindowAdapter {
 
         private final Frame frame;
