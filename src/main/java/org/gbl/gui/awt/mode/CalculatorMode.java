@@ -1,4 +1,4 @@
-package org.gbl.gui.view.mode;
+package org.gbl.gui.awt.mode;
 
 public enum CalculatorMode {
     BASIC(new BasicMode()),

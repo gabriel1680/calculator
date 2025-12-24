@@ -1,4 +1,4 @@
-package org.gbl.gui.view;
+package org.gbl.gui.awt;
 
 import org.gbl.gui.controller.CalculatorInput;
 import org.gbl.gui.controller.CalculatorView;

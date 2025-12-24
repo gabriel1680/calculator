@@ -1,9 +1,9 @@
-package org.gbl.gui.view;
+package org.gbl.gui.awt;
 
 import org.gbl.gui.controller.CalculatorInput;
-import org.gbl.gui.view.mode.BasicMode;
-import org.gbl.gui.view.mode.CalculatorMode;
-import org.gbl.gui.view.mode.Mode;
+import org.gbl.gui.awt.mode.BasicMode;
+import org.gbl.gui.awt.mode.CalculatorMode;
+import org.gbl.gui.awt.mode.Mode;
 
 import java.awt.*;
 import java.util.function.Consumer;

@@ -2,7 +2,7 @@ package org.gbl.gui;
 
 import org.gbl.calculator.Calculator;
 import org.gbl.gui.controller.ViewController;
-import org.gbl.gui.view.AWTCalculatorView;
+import org.gbl.gui.awt.AWTCalculatorView;
 
 public class Main {
     public static void main(String[] args) {

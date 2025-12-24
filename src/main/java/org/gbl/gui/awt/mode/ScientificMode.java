@@ -1,11 +1,13 @@
-package org.gbl.gui.view.mode;
+package org.gbl.gui.awt.mode;
 
 import java.awt.*;
 
-public final class BasicMode implements Mode {
+public final class ScientificMode implements Mode {
     @Override
     public String[] labels() {
         return new String[]{
+                "sin", "cos", "tan", "√",
+                "(", ")", "^", "%",
                 "←", "+/-", "%", "/",
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
@@ -16,6 +18,6 @@ public final class BasicMode implements Mode {
 
     @Override
     public GridLayout layout() {
-        return new GridLayout(5, 4, 5, 5);
+        return new GridLayout(7, 4, 5, 5);
     }
 }

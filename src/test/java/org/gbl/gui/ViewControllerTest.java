@@ -3,7 +3,7 @@ package org.gbl.gui;
 import org.gbl.calculator.Calculator;
 import org.gbl.gui.controller.CalculatorInput;
 import org.gbl.gui.controller.ViewController;
-import org.gbl.gui.view.mode.CalculatorMode;
+import org.gbl.gui.awt.mode.CalculatorMode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

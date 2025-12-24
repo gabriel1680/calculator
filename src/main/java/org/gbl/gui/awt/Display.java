@@ -1,4 +1,4 @@
-package org.gbl.gui.view;
+package org.gbl.gui.awt;
 
 import java.awt.*;
 
