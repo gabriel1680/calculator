@@ -1,9 +1,11 @@
 package org.gbl.gui.awt;
 
-import org.gbl.gui.controller.CalculatorInput;
 import org.gbl.gui.awt.mode.BasicMode;
 import org.gbl.gui.awt.mode.CalculatorMode;
 import org.gbl.gui.awt.mode.Mode;
+import org.gbl.gui.awt.symbol.Symbol;
+import org.gbl.gui.awt.symbol.SymbolToInputMapper;
+import org.gbl.gui.controller.CalculatorInput;
 
 import java.awt.*;
 import java.util.function.Consumer;
@@ -35,11 +37,10 @@ final class ButtonsPanel implements Presentable {
     private void setMode(Mode mode) {
         gridPanel.removeAll();
         gridPanel.setLayout(mode.layout());
-        for (String label : mode.labels()) {
-            gridPanel.add(createButton(consumer, label));
-        }
+        mode.symbols().forEach(symbol -> gridPanel.add(createButton(symbol)));
         gridPanel.revalidate();
         gridPanel.repaint();
+        root.invalidate();
     }
 
     private Panel createModeSelector(Consumer<CalculatorInput> consumer) {
@@ -55,23 +56,9 @@ final class ButtonsPanel implements Presentable {
         return wrapper;
     }
 
-    private static Button createButton(Consumer<CalculatorInput> consumer, String label) {
-        Button button = new Button(label);
-        button.addActionListener(e -> {
-            final var input = mapLabel(label);
-            consumer.accept(input);
-        });
+    private Button createButton(Symbol symbol) {
+        Button button = new Button(symbol.text());
+        button.addActionListener(e -> consumer.accept(SymbolToInputMapper.map(symbol)));
         return button;
-    }
-
-    private static CalculatorInput mapLabel(String label) {
-        return switch (label) {
-            case "+/-" -> new CalculatorInput.InvertSignal();
-            case "CE" -> new CalculatorInput.Clear();
-            case "←" -> new CalculatorInput.Backspace();
-            case "=" -> new CalculatorInput.Evaluate();
-            case "+", "-", "*", "/", "(", ")", "%" -> new CalculatorInput.Operator(label);
-            default -> new CalculatorInput.Digit(label);
-        };
     }
 }
