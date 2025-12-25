@@ -21,28 +21,59 @@ GUI programming with Java and AWT library.
 
 ```mermaid
 flowchart TD
-    View["AWTCalculatorView - View"] --> Presenter["Presenter / ViewController"]
-    Presenter --> Model["Model - Calculator + InputState"]
+    View["AWTCalculatorView - View"] --> Presenter["CalculatorPresenter - Presenter"]
+    Presenter --> Model["Calculator + InputState"]
     Model --> Presenter
     Presenter --> View
     View --> User["User sees display text"]
-    Symbols["Symbol enum (Digit, Operator, Function)"] --> Model
-    Symbols --> Presenter
 
-    classDef view fill:#bbf,stroke:#333,stroke-width:1px;
-    classDef presenter fill:#bfb,stroke:#333,stroke-width:1px;
-    classDef model fill:#ffb,stroke:#333,stroke-width:1px;
-    classDef user fill:#fbb,stroke:#333,stroke-width:1px;
-    classDef symbols fill:#ffd,stroke:#333,stroke-width:1px;
+    classDef view fill:#000000,stroke:#fff,stroke-width:1px,color:#fff;
+    classDef presenter fill:#000000,stroke:#fff,stroke-width:1px,color:#fff;
+    classDef model fill:#000000,stroke:#fff,stroke-width:1px,color:#fff;
+    classDef user fill:#000000,stroke:#fff,stroke-width:1px,color:#fff;
 
     class View view;
     class Presenter presenter;
     class Model model;
     class User user;
-    class Symbols symbols;
+```
+## Integration Tests Using DSL
+
+The DSL (Domain-Specific Language) is a small fluent API to write integration tests in a readable, natural way, simulating how a user interacts with the calculator.
+
+**Why use it:**
+
+* Makes tests easy to read and understand, almost like plain English.
+* Reduces boilerplate code for clicking buttons, switching modes, and checking the display.
+* Encapsulates AWT event handling so tests are clean and focused on behavior, not implementation.
+
+### Sample
+
+```java
+import static org.gbl.gui.integration.AWTCalculatorDSL.calculator;
+
+public class CalculatorIntegrationExample {
+
+    @Test
+    void calculatorTest() throws Exception {
+        calculator()
+            .type("2", "+", "2")
+            .equals()
+            .shouldDisplay("4.0")
+            .clear()
+            .type("√", "16")
+            .equals()
+            .shouldDisplay("4.0")
+            .scientificMode()
+            .type("sin", "0")
+            .equals()
+            .shouldDisplay("0.0")
+            .basicMode();
+    }
+}
 ```
 
-### WIP
+## WIP
 
 * Calculator modules:
     * Scientific - trigonometry
@@ -62,27 +93,3 @@ flowchart TD
 ### Scientific
 
 ![basic](./assets/scientific.png)
-
-## Integration Tests Using DSL
-
-```mermaid
-flowchart TD
-    A["Integration Test DSL: calculator().type('2','+','2')"] --> B["AWTCalculatorView - View"]
-    B --> C["Presenter - ViewController / CalculatorPresenter"]
-    C --> D["Model - Calculator + InputState"]
-    D --> C
-    C --> B
-    B --> E["User sees display text: 4.0"]
-
-    classDef testDSL fill:#f9f,stroke:#333,stroke-width:1px;
-    classDef view fill:#bbf,stroke:#333,stroke-width:1px;
-    classDef presenter fill:#bfb,stroke:#333,stroke-width:1px;
-    classDef model fill:#ffb,stroke:#333,stroke-width:1px;
-    classDef user fill:#fbb,stroke:#333,stroke-width:1px;
-
-    class A testDSL;
-    class B view;
-    class C presenter;
-    class D model;
-    class E user;
-```
