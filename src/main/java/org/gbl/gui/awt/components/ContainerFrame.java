@@ -1,15 +1,15 @@
-package org.gbl.gui.awt;
+package org.gbl.gui.awt.components;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-class ContainerFrame {
+public class ContainerFrame {
 
     private final Frame frame;
 
-    ContainerFrame() {
+    public ContainerFrame() {
         this.frame = createFrame();
     }
 
@@ -25,15 +25,15 @@ class ContainerFrame {
         return frame;
     }
 
-    void add(Presentable presentable, String position) {
+    public void add(Presentable presentable, String position) {
         frame.add(presentable.getComponent(), position);
     }
 
-    void show() {
+    public void show() {
         frame.setVisible(true);
     }
 
-    Component[] getComponents() {
+    public Component[] getComponents() {
         return frame.getComponents();
     }
 

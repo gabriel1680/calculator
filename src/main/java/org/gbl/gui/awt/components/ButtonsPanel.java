@@ -1,22 +1,22 @@
-package org.gbl.gui.awt;
+package org.gbl.gui.awt.components;
 
-import org.gbl.gui.awt.mode.BasicMode;
-import org.gbl.gui.awt.mode.CalculatorMode;
-import org.gbl.gui.awt.mode.Mode;
-import org.gbl.gui.awt.symbol.Symbol;
-import org.gbl.gui.awt.symbol.SymbolToInputMapper;
+import org.gbl.gui.awt.components.mode.BasicMode;
+import org.gbl.gui.awt.components.mode.CalculatorMode;
+import org.gbl.gui.awt.components.mode.Mode;
+import org.gbl.gui.awt.components.symbol.Symbol;
+import org.gbl.gui.awt.components.symbol.SymbolToInputMapper;
 import org.gbl.gui.controller.CalculatorInput;
 
 import java.awt.*;
 import java.util.function.Consumer;
 
-final class ButtonsPanel implements Presentable {
+public final class ButtonsPanel implements Presentable {
 
     private final Panel root;
     private final Panel gridPanel;
     private final Consumer<CalculatorInput> consumer;
 
-    ButtonsPanel(Consumer<CalculatorInput> buttonPressedConsumer) {
+    public ButtonsPanel(Consumer<CalculatorInput> buttonPressedConsumer) {
         this.consumer = buttonPressedConsumer;
         this.root = new Panel(new BorderLayout());
         this.gridPanel = new Panel();

@@ -1,8 +1,8 @@
-package org.gbl.gui.awt;
+package org.gbl.gui.awt.components;
 
 import java.awt.*;
 
 @FunctionalInterface
-interface Presentable {
+public interface Presentable {
     Component getComponent();
 }

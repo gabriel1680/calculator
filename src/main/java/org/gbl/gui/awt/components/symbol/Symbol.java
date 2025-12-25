@@ -1,4 +1,4 @@
-package org.gbl.gui.awt.symbol;
+package org.gbl.gui.awt.components.symbol;
 
 public enum Symbol {
     ZERO("0", Type.DIGIT),

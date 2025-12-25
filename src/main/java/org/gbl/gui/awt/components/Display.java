@@ -1,13 +1,13 @@
-package org.gbl.gui.awt;
+package org.gbl.gui.awt.components;
 
 import java.awt.*;
 
-class Display implements Presentable {
+public class Display implements Presentable {
 
     private final Panel panel;
     private final TextField textField;
 
-    Display() {
+    public Display() {
         this.textField = createTextField();
         this.panel = createPanel(textField);
     }

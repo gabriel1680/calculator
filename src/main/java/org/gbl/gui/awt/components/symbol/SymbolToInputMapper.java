@@ -1,4 +1,4 @@
-package org.gbl.gui.awt.symbol;
+package org.gbl.gui.awt.components.symbol;
 
 import org.gbl.gui.controller.CalculatorInput;
 
