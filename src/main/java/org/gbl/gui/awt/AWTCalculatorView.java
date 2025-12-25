@@ -61,6 +61,7 @@ public class AWTCalculatorView implements CalculatorView {
     @Override
     public void switchTo(String mode) {
         buttonsPanel.switchTo(mode);
+        frame.pack();
     }
 
     public Component[] getComponents() {

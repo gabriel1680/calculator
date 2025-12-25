@@ -15,9 +15,12 @@ class ContainerFrame {
 
     private static Frame createFrame() {
         final Frame frame = new Frame("Calculator");
-        frame.setSize(300, 400);
+        final var height = 400;
+        frame.setSize(300, height);
         frame.setLayout(new BorderLayout());
         frame.setLocationRelativeTo(null); // center window
+        frame.setMinimumSize(new Dimension(0, height)); // height fixed
+        frame.setMaximumSize(new Dimension(Integer.MAX_VALUE, height)); // height fixed
         frame.addWindowListener(new CleanupWindowAdapter(frame));
         return frame;
     }
@@ -32,6 +35,11 @@ class ContainerFrame {
 
     Component[] getComponents() {
         return frame.getComponents();
+    }
+
+    public void pack() {
+        frame.pack();
+        frame.setResizable(false);
     }
 
     private static class CleanupWindowAdapter extends WindowAdapter {
